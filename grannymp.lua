@@ -1,46 +1,25 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "Rayfield Example Window | Gabe Itch",
-    Icon = 0,
-    LoadingTitle = "Rayfield Interface Suite",
-    LoadingSubtitle = "by Sirius",
-    Theme = "BlackAndWhite",
-    DisableRayfieldPrompts = false,
-    DisableBuildWarnings = false,
+    Name = "Rayfield Hub",
+    Icon = 4483362458,
+    LoadingTitle = "Loading Rayfield Hub",
+    LoadingSubtitle = "By Your Name",
+    Theme = "Default",
     ConfigurationSaving = {
         Enabled = true,
-        FolderName = nil,
-        FileName = "Big Hub"
-    },
-    Discord = {
-        Enabled = false,
-        Invite = "noinvitelink",
-        RememberJoins = true
-    },
-    KeySystem = false,
-    KeySettings = {
-        Title = "Untitled",
-        Subtitle = "Key System",
-        Note = "No method of obtaining the key is provided",
-        FileName = "Key",
-        SaveKey = true,
-        GrabKeyFromSite = false,
-        Key = {"Hello"}
+        FolderName = "RayfieldHub",
+        FileName = "HubSettings"
     }
 })
 
-local playerTab = Window:CreateTab("Player Settings", "rewind")
-local espTab = Window:CreateTab("ESP Settings", "eye")
-local noclipTab = Window:CreateTab("Noclip Settings", "airplay")
+local PlayerTab = Window:CreateTab("Player", 4483362458)
 
-local playerSection = playerTab:CreateSection("Player Controls")
-local espSection = espTab:CreateSection("ESP Controls")
-local noclipSection = noclipTab:CreateSection("Noclip Settings")
+local PlayerSection = PlayerTab:CreateSection("Player Settings")
 
-local walkspeedSlider = playerSection:CreateSlider({
-    Name = "Walkspeed",
-    Range = {0, 100},
+local WalkSpeedSlider = PlayerTab:CreateSlider({
+    Name = "WalkSpeed",
+    Range = {0, 500},
     Increment = 1,
     Suffix = "Speed",
     CurrentValue = 0,
@@ -50,11 +29,11 @@ local walkspeedSlider = playerSection:CreateSlider({
     end
 })
 
-local jumppowerSlider = playerSection:CreateSlider({
-    Name = "Jump Power",
-    Range = {0, 100},
+local JumpPowerSlider = PlayerTab:CreateSlider({
+    Name = "JumpPower",
+    Range = {0, 500},
     Increment = 1,
-    Suffix = "Jump Power",
+    Suffix = "Power",
     CurrentValue = 0,
     Flag = "JumpPower",
     Callback = function(Value)
@@ -62,66 +41,87 @@ local jumppowerSlider = playerSection:CreateSlider({
     end
 })
 
-local grannyESP = espSection:CreateToggle({
-    Name = "Granny ESP",
+local ESPTab = Window:CreateTab("ESP", 4483362458)
+
+local ESPSection = ESPTab:CreateSection("ESP Settings")
+
+local ESPToggle = ESPTab:CreateToggle({
+    Name = "ESP Toggle",
     CurrentValue = false,
-    Flag = "GrannyESP",
-    Callback = function(state)
-        if state then
+    Flag = "ESPEnabled",
+    Callback = function(Value)
+        if Value then
+            -- Activate ESP here
         else
+            -- Deactivate ESP here
         end
     end
 })
 
-local nameESP = espSection:CreateToggle({
-    Name = "Name ESP",
+local ESPHighlightToggle = ESPTab:CreateToggle({
+    Name = "Highlight Toggle",
     CurrentValue = false,
-    Flag = "NameESP",
-    Callback = function(state)
+    Flag = "ESPHightlightEnabled",
+    Callback = function(Value)
+        if Value then
+            -- Activate Highlight ESP here
+        else
+            -- Deactivate Highlight ESP here
+        end
     end
 })
 
-local highlightESP = espSection:CreateToggle({
-    Name = "Highlight ESP",
-    CurrentValue = false,
-    Flag = "HighlightESP",
-    Callback = function(state)
-    end
-})
-
-local espColorPicker = espSection:CreateColorPicker({
+local ESPColorPicker = ESPTab:CreateColorPicker({
     Name = "ESP Color",
     Color = Color3.fromRGB(255, 255, 255),
     Flag = "ESPColor",
-    Callback = function(color)
+    Callback = function(Value)
+        -- Change ESP color here
     end
 })
 
-local safeModeToggle = noclipSection:CreateToggle({
-    Name = "Safe Mode Noclip",
+local GrannyESPToggle = ESPTab:CreateToggle({
+    Name = "Granny ESP",
     CurrentValue = false,
-    Flag = "SafeModeNoclip",
-    Callback = function(state)
-        if state then
+    Flag = "GrannyESPEnabled",
+    Callback = function(Value)
+        if Value then
+            -- Enable Granny ESP here
+        else
+            -- Disable Granny ESP here
+        end
+    end
+})
+
+local NoclipTab = Window:CreateTab("Noclip", 4483362458)
+
+local NoclipSection = NoclipTab:CreateSection("Noclip Settings")
+
+local NoclipToggle = NoclipTab:CreateToggle({
+    Name = "Noclip",
+    CurrentValue = false,
+    Flag = "NoclipEnabled",
+    Callback = function(Value)
+        if Value then
         else
         end
     end
 })
 
-local noclipToggle = noclipSection:CreateToggle({
-    Name = "Noclip",
+local SafeModeNoclipToggle = NoclipTab:CreateToggle({
+    Name = "Safe Mode Noclip",
     CurrentValue = false,
-    Flag = "Noclip",
-    Callback = function(state)
-        if state then
+    Flag = "SafeModeNoclipEnabled",
+    Callback = function(Value)
+        if Value then
         else
         end
     end
 })
 
 Rayfield:Notify({
-    Title = "Welcome to the Script!",
-    Content = "Features are ready to use.",
-    Duration = 5,
-    Image = "rewind"
+    Title = "Setup Complete",
+    Content = "Your hub is ready to use with the Default theme!",
+    Duration = 4,
+    Image = 4483362458
 })
